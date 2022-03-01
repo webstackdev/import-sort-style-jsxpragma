@@ -3,10 +3,10 @@
  * For a detailed explanation regarding each configuration property and type check, visit:
  * https://jestjs.io/docs/configuration
  */
+import isCI from 'is-ci'
 import { pathsToModuleNameMapper } from 'ts-jest'
 
-// In the following statement, replace `./tsconfig` with the path to your `tsconfig` file
-// which contains the path mapping (ie the `compilerOptions.paths` option):
+// The path to your `tsconfig` file which contains the path mapping (ie the `compilerOptions.paths` option):
 import { compilerOptions } from './tsconfig.json'
 
 export default {
@@ -23,7 +23,7 @@ export default {
   clearMocks: true,
 
   // Indicates whether the coverage information should be collected while executing the test
-  collectCoverage: true,
+  collectCoverage: isCI,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   // collectCoverageFrom: undefined,
