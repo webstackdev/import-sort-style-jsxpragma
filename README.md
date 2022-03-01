@@ -1,21 +1,23 @@
 # import-sort-jsx-pragma
 
 It you are using a custom jsx pragma compiler directive, such as from `emotion` or `theme-ui`, other `import-sort`
-styles will either move the directive with its associated import if there is no blank line between the directive and the
-import, or force you to include a blank line and then will sort the jsx import according to the style's rules. In the latter
-case you'll get an `unused-import` error from `eslint-plugin-unused-imports` if you are using that rule, which is included
-in a number of ESLint presets. This forces you to also include an `eslint-disable-next-line` directive before the jsx import,
-or to turn off an otherwise-helpful rule if you are using custom `jsx` pragmas on a per-page basis:
+styles won't handle moving the compiler directive and pragma import together to the top of the file. You'll end up
+with an `unused-import` error from `eslint-plugin-unused-imports` if you are using that ESLint rule which is included
+in a number of ESLint presets. This forces you to also include an `eslint-disable-next-line` directive before the
+jsx import, or to turn off an otherwise-helpful rule if you are using custom `jsx` pragmas on a per-page basis.
+
+Correct:
 
 ```js
 /** @jsx jsx */
-
-// eslint-disable-next-line no-unused-imports
 import { jsx } from 'theme-ui'
+
+// ... other imports
 ```
 
-This is a style for [import-sort](https://github.com/renke/import-sort) that ensures custom `jsx` pragmas and their associated
-imports are always sorted at the top of a module, and then groups modules together. It also handles scoped modules.
+This is a style for [import-sort](https://github.com/renke/import-sort) that ensures custom `jsx` pragmas and their
+associated imports are always sorted at the top of a module, and then groups modules together. It also handles
+scoped modules e.g. `@myScope` using TypeScript `paths` in `tsconfig` or a similar approach.
 
 ## Install
 
@@ -33,7 +35,7 @@ yarn add import-sort-style-jsxpragma sort-importer -D
 
 ## Configure
 
-Add the following to your `package.json` file:
+Add the following to your `package.json` file. You can also [change your parser](https://github.com/renke/import-sort#using-a-different-style-or-parser).
 
 ```json
 "importSort": {
@@ -45,8 +47,12 @@ Add the following to your `package.json` file:
 
 ## Behavior
 
+Any `import of` a `jsx` pragma will placed at the top of the code file. The compiler directive
+(`/** @jsx jsx */`) should be on the line directly above the `jsx` pragma `import`.
+
 ```js
-// jsx pragma is placed at the top of the code file, including the jsx import.
+//
+//----------------------------------------------------------------------------
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 
@@ -86,12 +92,14 @@ There are multiple ways to sort your imports:
 - [Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=amatiasq.sort-imports)
 - [Atom](https://atom.io/packages/atom-import-sort)
 - [Vim](https://github.com/ruanyl/vim-sort-imports)
-- JetBrains IDEs (IntelliJ IDEA, WebStorm etc.)
+- JetBrains IDEs (IntelliJ IDEA, WebStorm etc.) [see docs](https://github.com/renke/import-sort#jetbrains-ides)
 - Command Line
 
 To sort from the command line, install `sort-importer` with `npm install -g import-sort-cli` or use it directly with `npx import-sort-cli`.
 
 ## Comments
+
+Comments are moved with their associated import if there are no blank lines between the two, and also if they are inline.
 
 ```js
 import foo from 'bar' // This comment will move with the import
@@ -110,10 +118,20 @@ import foo from 'bar'
 // This comment won't move with the import
 ```
 
-For copyright headers and compiler pragmas like `@flow` that are not in a comment block, a blank line should be added after the comment:
+For copyright headers and compiler pragmas like `@flow` that are not in a comment block, a blank line should be added after the comment.
 
 ```js
 // @flow
 
 import foo from 'bar'
 ```
+
+## Tests
+
+Tests use Jest snapshots to test sorting matchers:
+
+`npm run test`
+
+Snapshots can be updated if code changes as follows. They will not automatically be updated in CI but are committed to the repo.
+
+`npm run test --updateSnapshot`
