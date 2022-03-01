@@ -1,0 +1,15 @@
+import * as path from 'path'
+import xx from '@myScope/xx'
+import './a'
+import aaa from '../../aaa'
+import yy from '@myScope/yy'
+import { readFile, writeFile } from 'fs'
+import zz from '@yourScope/zz'
+import bbb from '../../bbb'
+import './c'
+import aaaa from '../aaaa'
+import nope from 'no-op'
+import 'noop' // preserves comment
+import './b'
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
