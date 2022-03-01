@@ -47,7 +47,7 @@ Add the following to your `package.json` file. You can also [change your parser]
 
 ## Behavior
 
-Any `import of` a `jsx` pragma will placed at the top of the code file. The compiler directive
+Any `import` of a `jsx` pragma will placed at the top of the code file. The compiler directive
 (`/** @jsx jsx */`) should be on the line directly above the `jsx` pragma `import`.
 
 ```js
@@ -92,7 +92,7 @@ There are multiple ways to sort your imports:
 - [Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=amatiasq.sort-imports)
 - [Atom](https://atom.io/packages/atom-import-sort)
 - [Vim](https://github.com/ruanyl/vim-sort-imports)
-- JetBrains IDEs (IntelliJ IDEA, WebStorm etc.) [see docs](https://github.com/renke/import-sort#jetbrains-ides)
+- JetBrains IDEs (IntelliJ IDEA, WebStorm etc.) [docs](https://github.com/renke/import-sort#jetbrains-ides)
 - Command Line
 
 To sort from the command line, install `sort-importer` with `npm install -g import-sort-cli` or use it directly with `npx import-sort-cli`.
@@ -118,7 +118,9 @@ import foo from 'bar'
 // This comment won't move with the import
 ```
 
-For copyright headers and compiler pragmas like `@flow` that are not in a comment block, a blank line should be added after the comment.
+For copyright headers and compiler pragmas like `@flow` that are not in a comment block, a blank line should
+be added after the comment with the exception of `jsx` compiler directives (to avoid ESLint `unused-import`
+errors if you are using that rule).
 
 ```js
 // @flow
