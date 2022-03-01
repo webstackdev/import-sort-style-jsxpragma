@@ -1,5 +1,5 @@
 {
-  "name": "@webstackbuilders/import-sort-style-module-scoped",
+  "name": "@webstackbuilders/import-sort-style-jsxpragma",
   "version": "1.0.0",
   "description": "An import-sort style that places jsx pragma compiler directives and associated jsx imports at the top of code files, and groups and sorts by module with support for scoped modules.",
   "main": "dist/index.js",
