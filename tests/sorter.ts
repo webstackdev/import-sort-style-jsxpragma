@@ -19,7 +19,7 @@ export const sorter = (fileName: string) => {
   try {
     sortResult = sortImports(unsortedCode, parser, style, resolvedFilePath)
   } catch (e) {
-    console.error('${fileName}:')
+    console.error(`${fileName}:`)
     console.error(e)
     return
   }
