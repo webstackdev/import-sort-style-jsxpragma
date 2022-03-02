@@ -12,7 +12,10 @@
     "test": "jest"
   },
   "author": "Kevin Brown (https://github.com/webstackdev)",
-  "repository": "webstackbuilders/import-sort-style-jsxpragma",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webstack-builders/import-sort-style-jsxpragma.git"
+  },
   "license": "BSD",
   "devDependencies": {
     "@babel/preset-env": "7.16.11",
