@@ -1,4 +1,4 @@
-# import-sort-jsx-pragma
+# @webstackbuilders/import-sort-style-jsxpragma
 
 It you are using a custom jsx pragma compiler directive, such as from `emotion` or `theme-ui`, other `import-sort`
 styles won't handle moving the compiler directive and pragma import together to the top of the file. You'll end up
