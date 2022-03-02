@@ -1,4 +1,4 @@
-# @webstackbuilders/import-sort-style-jsxpragma
+# import-sort-style-jsxpragma
 
 It you are using a custom jsx pragma compiler directive, such as from `emotion` or `theme-ui`, other `import-sort`
 styles won't handle moving the compiler directive and pragma import together to the top of the file. You'll end up
@@ -24,13 +24,13 @@ scoped modules e.g. `@myScope` using TypeScript `paths` in `tsconfig` or a simil
 NPM:
 
 ```bash
-npm i --save-dev @webstackbuilders/import-sort-style-jsxpragma sort-importer
+npm i --save-dev import-sort-style-jsxpragma sort-importer
 ```
 
 Yarn:
 
 ```bash
-yarn add @webstackbuilders/import-sort-style-jsxpragma sort-importer -D
+yarn add import-sort-style-jsxpragma sort-importer -D
 ```
 
 ## Configure
